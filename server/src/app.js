@@ -1,9 +1,8 @@
 import express from "express";
 import cors from "cors";
-import router from "./routes/v1";
+import router from "./routes/v1/index.js";
 
 const app = express();
-
 
 // parse json request body
 app.use(express.json());
@@ -11,7 +10,7 @@ app.use(express.json());
 // parse urlencoded request body
 app.use(express.urlencoded({ extended: true }));
 
-app.use("/api/v1", router)
+app.use("/api/v1", router);
 
 // enable cors
 app.use(cors());
