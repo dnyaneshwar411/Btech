@@ -12,7 +12,7 @@ const userSchema = new mongoose.Schema(
       required: true
     },
 
-    role: {
+    position: {
       type: String,
       enum: [
         "admin",
@@ -22,7 +22,14 @@ const userSchema = new mongoose.Schema(
         "production",
         "quality",
         "accounting",
-        "dispatch",
+        "dispatch"
+      ]
+    },
+
+    role: {
+      type: [String],
+      enum: [
+
       ],
       required: true,
     },
@@ -32,4 +39,5 @@ const userSchema = new mongoose.Schema(
   }
 );
 
-export default mongoose.model("User", userSchema);
+const User = mongoose.model("User", userSchema);
+export default User;

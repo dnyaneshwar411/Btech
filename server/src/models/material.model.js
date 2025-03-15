@@ -29,7 +29,8 @@ const materialSchema = new mongoose.Schema(
         },
         quantity: {
           type: Number,
-          required: true, default: 0
+          required: true,
+          default: 0
         },
       },
     ],
@@ -46,13 +47,16 @@ const materialSchema = new mongoose.Schema(
           required: true
         },
         quantity: {
-          type: Number, required: true
+          type: Number,
+          required: true
         },
         purchased_from: {
-          type: String, required: true
+          type: String,
+          required: true
         },
         amount: {
-          type: Number, required: true
+          type: Number,
+          required: true
         },
       },
     ],
@@ -80,4 +84,5 @@ const materialSchema = new mongoose.Schema(
   }
 );
 
-export default mongoose.model("Material", materialSchema);
+const Material = mongoose.model("Material", materialSchema);
+export default Material;

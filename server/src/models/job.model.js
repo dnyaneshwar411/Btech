@@ -1,4 +1,4 @@
-import mongoose, { mongo } from "mongoose";
+import mongoose from "mongoose";
 
 const jobSchema = new mongoose.Schema(
   {
@@ -126,4 +126,5 @@ const jobSchema = new mongoose.Schema(
   }
 );
 
-export default mongoose.model("Job", jobSchema);
+const Job = mongoose.model("Job", jobSchema);
+export default Job;
