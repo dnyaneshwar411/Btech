@@ -1,0 +1,47 @@
+[
+  {
+    "name": "John Doe",
+    "type": "individual",
+    "phone": "9876543210",
+    "email": "johndoe@example.com",
+    "jobs": [
+      "65fa1b9a4f1a2b3c4d5e6f70",
+      "65fa1b9a4f1a2b3c4d5e6f71"
+    ]
+  },
+  {
+    "name": "ABC Corp",
+    "type": "group",
+    "phone": "9123456789",
+    "email": "contact@abccorp.com",
+    "jobs": [
+      "65fa1b9a4f1a2b3c4d5e6f72"
+    ]
+  },
+  {
+    "name": "Emily Smith",
+    "type": "individual",
+    "phone": "9087654321",
+    "email": "emilysmith@example.com",
+    "jobs": []
+  },
+  {
+    "name": "Tech Solutions",
+    "type": "group",
+    "phone": "9012345678",
+    "email": "info@techsolutions.com",
+    "jobs": [
+      "65fa1b9a4f1a2b3c4d5e6f73",
+      "65fa1b9a4f1a2b3c4d5e6f74"
+    ]
+  },
+  {
+    "name": "Michael Brown",
+    "type": "individual",
+    "phone": "9871234560",
+    "email": "michaelbrown@example.com",
+    "jobs": [
+      "65fa1b9a4f1a2b3c4d5e6f75"
+    ]
+  }
+]

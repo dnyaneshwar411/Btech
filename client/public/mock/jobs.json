@@ -1,0 +1,268 @@
+[
+  {
+    "job_id": "JOB-001",
+    "requested_by": {
+      "_id": "6523df9b12a6a3f57c8d9e12",
+      "name": "Prasad Bagad"
+    },
+    "created_by": "6523df9b12a6a3f57c8d9e34",
+    "stage": "in-production",
+    "materials": [
+      {
+        "_id": "6523df9b12a6a3f57c8d9f01",
+        "quantity": 50
+      },
+      {
+        "_id": "6523df9b12a6a3f57c8d9f02",
+        "quantity": 30
+      }
+    ],
+    "company_expense": [
+      {
+        "description": "Raw material purchase",
+        "amount": 5000
+      },
+      {
+        "description": "Transportation",
+        "amount": 1200
+      }
+    ],
+    "sale_amount": 15000,
+    "quality_check": {
+      "passed": false,
+      "checked_by": "6523df9b12a6a3f57c8d9e56",
+      "checklist": [
+        {
+          "description": "Material check",
+          "completed": true
+        },
+        {
+          "description": "Final inspection",
+          "completed": false
+        }
+      ],
+      "remarks": [
+        {
+          "description": "Minor surface scratches detected",
+          "image": "https://example.com/image1.jpg",
+          "completed": false
+        }
+      ]
+    },
+    "stage_history": [
+      {
+        "forwared_to": "Quality Control",
+        "action_taker": "6523df9b12a6a3f57c8d9e89",
+        "timestamp": "2024-03-14T10:30:00Z"
+      },
+      {
+        "forwared_to": "Production",
+        "action_taker": "6523df9b12a6a3f57c8d9e90",
+        "timestamp": "2024-03-13T14:15:00Z"
+      }
+    ],
+    "createdAt": "2024-03-12T08:45:00Z",
+    "updatedAt": "2024-03-14T10:30:00Z"
+  },
+  {
+    "job_id": "JOB-002",
+    "requested_by": {
+      "_id": "6523df9b12a6a3f57c8d9e12",
+      "name": "Pranav Dhadwad"
+    },
+    "created_by": "6523df9b12a6a3f57c8d9e35",
+    "stage": "ready-dispatch",
+    "materials": [
+      {
+        "_id": "6523df9b12a6a3f57c8d9f03",
+        "quantity": 20
+      }
+    ],
+    "company_expense": [
+      {
+        "description": "Labor cost",
+        "amount": 2500
+      }
+    ],
+    "sale_amount": 8000,
+    "quality_check": {
+      "passed": true,
+      "checked_by": "6523df9b12a6a3f57c8d9e57",
+      "checklist": [
+        {
+          "description": "Packaging check",
+          "completed": true
+        }
+      ],
+      "remarks": []
+    },
+    "stage_history": [
+      {
+        "forwared_to": "Dispatch",
+        "action_taker": "6523df9b12a6a3f57c8d9e92",
+        "timestamp": "2024-03-15T09:00:00Z"
+      }
+    ],
+    "createdAt": "2024-03-10T07:30:00Z",
+    "updatedAt": "2024-03-15T09:00:00Z"
+  },
+  {
+    "job_id": "JOB-003",
+    "requested_by": {
+      "_id": "6523df9b12a6a3f57c8d9e12",
+      "name": "Pranav Dhadwad"
+    },
+    "created_by": "6523df9b12a6a3f57c8d9e40",
+    "stage": "created",
+    "materials": [
+      {
+        "_id": "6523df9b12a6a3f57c8d9f10",
+        "quantity": 15
+      }
+    ],
+    "company_expense": [
+      {
+        "description": "Design costs",
+        "amount": 1800
+      }
+    ],
+    "sale_amount": 5000,
+    "quality_check": {
+      "passed": false,
+      "checked_by": null,
+      "checklist": [],
+      "remarks": []
+    },
+    "stage_history": [],
+    "createdAt": "2024-03-16T09:30:00Z",
+    "updatedAt": "2024-03-16T09:30:00Z"
+  },
+  {
+    "job_id": "JOB-004",
+    "requested_by": {
+      "_id": "6523df9b12a6a3f57c8d9e12",
+      "name": "Pranav Dhadwad"
+    },
+    "created_by": "6523df9b12a6a3f57c8d9e41",
+    "stage": "listed",
+    "materials": [
+      {
+        "_id": "6523df9b12a6a3f57c8d9f11",
+        "quantity": 25
+      },
+      {
+        "_id": "6523df9b12a6a3f57c8d9f12",
+        "quantity": 10
+      }
+    ],
+    "company_expense": [
+      {
+        "description": "Marketing expense",
+        "amount": 2500
+      }
+    ],
+    "sale_amount": 9000,
+    "quality_check": {
+      "passed": false,
+      "checked_by": null,
+      "checklist": [],
+      "remarks": []
+    },
+    "stage_history": [],
+    "createdAt": "2024-03-15T08:00:00Z",
+    "updatedAt": "2024-03-15T08:00:00Z"
+  },
+  {
+    "job_id": "JOB-005",
+    "requested_by": {
+      "_id": "6523df9b12a6a3f57c8d9e12",
+      "name": "Pranav Dhadwad"
+    },
+    "created_by": "6523df9b12a6a3f57c8d9e42",
+    "stage": "created",
+    "materials": [
+      {
+        "_id": "6523df9b12a6a3f57c8d9f13",
+        "quantity": 40
+      }
+    ],
+    "company_expense": [
+      {
+        "description": "Prototype development",
+        "amount": 3200
+      }
+    ],
+    "sale_amount": 12000,
+    "quality_check": {
+      "passed": false,
+      "checked_by": null,
+      "checklist": [],
+      "remarks": []
+    },
+    "stage_history": [],
+    "createdAt": "2024-03-14T07:45:00Z",
+    "updatedAt": "2024-03-14T07:45:00Z"
+  },
+  {
+    "job_id": "JOB-006",
+    "requested_by": {
+      "_id": "6523df9b12a6a3f57c8d9e12",
+      "name": "Pranav Dhadwad"
+    },
+    "created_by": "6523df9b12a6a3f57c8d9e43",
+    "stage": "listed",
+    "materials": [
+      {
+        "_id": "6523df9b12a6a3f57c8d9f14",
+        "quantity": 18
+      }
+    ],
+    "company_expense": [
+      {
+        "description": "Material testing",
+        "amount": 1400
+      }
+    ],
+    "sale_amount": 4500,
+    "quality_check": {
+      "passed": false,
+      "checked_by": null,
+      "checklist": [],
+      "remarks": []
+    },
+    "stage_history": [],
+    "createdAt": "2024-03-13T10:15:00Z",
+    "updatedAt": "2024-03-13T10:15:00Z"
+  },
+  {
+    "job_id": "JOB-007",
+    "requested_by": {
+      "_id": "6523df9b12a6a3f57c8d9e12",
+      "name": "Pranav Dhadwad"
+    },
+    "created_by": "6523df9b12a6a3f57c8d9e44",
+    "stage": "created",
+    "materials": [
+      {
+        "_id": "6523df9b12a6a3f57c8d9f15",
+        "quantity": 60
+      }
+    ],
+    "company_expense": [
+      {
+        "description": "Logistics",
+        "amount": 2100
+      }
+    ],
+    "sale_amount": 10000,
+    "quality_check": {
+      "passed": false,
+      "checked_by": null,
+      "checklist": [],
+      "remarks": []
+    },
+    "stage_history": [],
+    "createdAt": "2024-03-12T12:30:00Z",
+    "updatedAt": "2024-03-12T12:30:00Z"
+  }
+]

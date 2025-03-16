@@ -17,7 +17,7 @@ export default function Sidebar() {
   const pathname = usePathname()
 
   return <div
-    className={`bg-gray-100 dark:bg-base-secondary shadow-lg transition-all duration-300 ease-in-out relative flex flex-col overflow-hidden border-r border-gray-200 dark:border-base-border fixed md:static top-0 ${sidebarOpen ? "w-64 left-0" : "w-0 left-[-100%]"} md:w-64`}
+    className={`h-screen bg-gray-100 dark:bg-base-secondary shadow-lg transition-all duration-300 ease-in-out relative flex flex-col overflow-x-hidden border-r border-gray-200 dark:border-base-border fixed md:static top-0 ${sidebarOpen ? "w-64 left-0" : "w-0 left-[-100%]"} md:w-64`}
   >
 
     <div className="flex items-center justify-between h-16 px-4 border-b border-gray-200 dark:border-base-border">
@@ -35,7 +35,7 @@ export default function Sidebar() {
       </button>
     </div>
 
-    <aside className="mt-5 px-2">
+    <aside className="h-full mt-5 px-2 overflow-y-auto">
       {sidebar.map(item => item.children
         ? <ParentSidebar
           key={item.id}
@@ -49,10 +49,12 @@ export default function Sidebar() {
       )}
     </aside>
 
-    <button className="bg-white dakr:bg-black hover:bg-gray-200 dark:hover:bg-base-card font-bold text-left px-4 py-2 mt-auto m-4 flex items-center gap-2">
-      <LogOut className="w-4 h-4" />
-      <span>Logout</span>
-    </button>
+    <div className=" pt-4">
+      <button className="w-[calc(100%-32px)] bg-white dakr:bg-black hover:bg-gray-200 dark:hover:bg-base-card font-bold text-left px-4 py-2 mt-auto m-4 flex items-center gap-2">
+        <LogOut className="w-4 h-4" />
+        <span>Logout</span>
+      </button>
+    </div>
   </div>
 
 }

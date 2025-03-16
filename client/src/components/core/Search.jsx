@@ -4,7 +4,8 @@ import FormControl from "./FormControl";
 import { useEffect, useState } from "react";
 
 export default function Search({
-  onChange
+  onChange,
+  className
 }) {
   const [value, setValue] = useState("");
   const debouncedValue = useDebounce(value, 500);
@@ -13,11 +14,11 @@ export default function Search({
     if (onChange) onChange(debouncedValue);
   }, [debouncedValue]);
 
-  return <div className="relative">
+  return <div className={`max-w-[550px] w-full relative ${className}`}>
     <FormControl
       value={value}
       onChange={e => setValue(e.target.value)}
-      placeholder="search..."
+      placeholder="Search..."
       className="[&_.input]:mt-0"
     />
   </div>
