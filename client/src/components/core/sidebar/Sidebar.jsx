@@ -1,15 +1,11 @@
 "use client";
+import { sidebar } from "@/utils/data/ui";
 import {
   ChevronDown,
   ChevronRight,
+  LogOut,
   Menu,
   Package,
-  ShoppingCart,
-  Users,
-  BarChart,
-  Settings,
-  Truck,
-  Home,
   X,
 } from "lucide-react";
 import Link from "next/link";
@@ -19,8 +15,10 @@ import { useState } from "react";
 export default function Sidebar() {
   const [sidebarOpen, setSidebarOpen] = useState(false)
   const pathname = usePathname()
+
   return <div
-    className={`bg-gray-100 dark:bg-base-secondary shadow-lg transition-all duration-300 ease-in-out relative overflow-hidden border-r border-gray-200 dark:border-base-border fixed md:static top-0 ${sidebarOpen ? "w-64 left-0" : "w-0 left-[-100%]"} md:w-64`}>
+    className={`bg-gray-100 dark:bg-base-secondary shadow-lg transition-all duration-300 ease-in-out relative flex flex-col overflow-hidden border-r border-gray-200 dark:border-base-border fixed md:static top-0 ${sidebarOpen ? "w-64 left-0" : "w-0 left-[-100%]"} md:w-64`}
+  >
 
     <div className="flex items-center justify-between h-16 px-4 border-b border-gray-200 dark:border-base-border">
       <div className="flex items-center">
@@ -37,63 +35,47 @@ export default function Sidebar() {
       </button>
     </div>
 
-    {/* Sidebar Navigation */}
-    <nav className="mt-5 px-2">
-      <SidebarItem icon={<Home className="h-4 w-4" />} title="Sales" path="/admin/sales" currentPath={pathname} />
+    <aside className="mt-5 px-2">
+      {sidebar.map(item => item.children
+        ? <ParentSidebar
+          key={item.id}
+          item={item}
+        />
+        : <SidebarItem
+          key={item.id}
+          currentPath={pathname}
+          {...item}
+        />
+      )}
+    </aside>
 
-      <SidebarItemWithChildren
-        icon={<Package className="h-4 w-4" />}
-        title="Inventory"
-        isActive={pathname.includes("/inventory")}
-        defaultOpen={pathname.includes("/inventory")}
-      >
-        <SidebarSubItem title="Products" path="/inventory/products" currentPath={pathname} />
-        <SidebarSubItem title="Categories" path="/inventory/categories" currentPath={pathname} />
-        <SidebarSubItem title="Stock Levels" path="/inventory/stock" currentPath={pathname} />
-      </SidebarItemWithChildren>
-
-      <SidebarItemWithChildren
-        icon={<ShoppingCart className="h-4 w-4" />}
-        title="Orders"
-        isActive={pathname.includes("/orders")}
-        defaultOpen={pathname.includes("/orders")}
-      >
-        <SidebarSubItem title="All Orders" path="/orders/all" currentPath={pathname} />
-        <SidebarSubItem title="Pending" path="/orders/pending" currentPath={pathname} />
-        <SidebarSubItem title="Completed" path="/orders/completed" currentPath={pathname} />
-      </SidebarItemWithChildren>
-
-      <SidebarItemWithChildren
-        icon={<Truck className="h-4 w-4" />}
-        title="Suppliers"
-        isActive={pathname.includes("/suppliers")}
-        defaultOpen={pathname.includes("/suppliers")}
-      >
-        <SidebarSubItem title="All Suppliers" path="/suppliers/all" currentPath={pathname} />
-        <SidebarSubItem title="Purchase Orders" path="/suppliers/purchase-orders" currentPath={pathname} />
-      </SidebarItemWithChildren>
-
-      <SidebarItem
-        icon={<Users className="h-4 w-4" />}
-        title="Customers"
-        path="/customers"
-        currentPath={pathname}
-      />
-
-      <SidebarItem icon={<BarChart className="h-4 w-4" />} title="Reports" path="/reports" currentPath={pathname} />
-
-      <SidebarItem
-        icon={<Settings className="h-4 w-4" />}
-        title="Settings"
-        path="/settings"
-        currentPath={pathname}
-      />
-    </nav>
+    <button className="bg-white dakr:bg-black hover:bg-gray-200 dark:hover:bg-base-card font-bold text-left px-4 py-2 mt-auto m-4 flex items-center gap-2">
+      <LogOut className="w-4 h-4" />
+      <span>Logout</span>
+    </button>
   </div>
 
 }
 
-// Single sidebar item component
+function ParentSidebar({
+  item
+}) {
+  const pathname = usePathname()
+
+  return <SidebarItemWithChildren
+    key={item.id}
+    {...item}
+    isActive={pathname.includes(item.path)}
+    defaultOpen={pathname.includes(item.path)}
+  >
+    {item.children.map(children => <SidebarSubItem
+      key={children.id}
+      currentPath={pathname}
+      {...children}
+    />)}
+  </SidebarItemWithChildren>
+}
+
 function SidebarItem({ icon, title, path, currentPath }) {
   const isActive = path === currentPath
 
@@ -114,7 +96,6 @@ function SidebarItem({ icon, title, path, currentPath }) {
   )
 }
 
-// Sidebar item with children (collapsible)
 function SidebarItemWithChildren({ icon, title, children, isActive, defaultOpen = false }) {
   const [isOpen, setIsOpen] = useState(defaultOpen)
 
@@ -140,7 +121,6 @@ function SidebarItemWithChildren({ icon, title, children, isActive, defaultOpen 
   )
 }
 
-// Sidebar sub-item component
 function SidebarSubItem({ title, path, currentPath }) {
   const isActive = path === currentPath
 
