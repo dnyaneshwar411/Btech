@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 import app from "./app.js";
 import env from "./config/vars.js"
+import * as Models from "./models/index.js"
 
 let server;
 mongoose.connect(env.mongoose.url).then(() => {
