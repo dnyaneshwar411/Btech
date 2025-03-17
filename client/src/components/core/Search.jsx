@@ -14,12 +14,12 @@ export default function Search({
     if (onChange) onChange(debouncedValue);
   }, [debouncedValue]);
 
-  return <div className={`max-w-[550px] w-full relative ${className}`}>
+  return <div className={`max-w-[450px] w-full relative ${className}`}>
     <FormControl
       value={value}
       onChange={e => setValue(e.target.value)}
       placeholder="Search..."
-      className="[&_.input]:mt-0"
+      className="[&_.input]:mt-0 [&_.input]:font-medium"
     />
   </div>
 }

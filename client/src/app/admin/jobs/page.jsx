@@ -4,13 +4,14 @@ import TableData from "@/components/pages/sales/TableData";
 import TableComponent from "@/components/core/TableComponent";
 import { getJobs } from "@/lib/mock";
 import { salesheader } from "@/utils/data/table";
-import Link from "next/link";
 import { useEffect, useState } from "react";
 import FilterJobs from "@/components/pages/sales/FilterJobs";
+import Paginate from "@/components/core/Paginate";
 
 export default function Page() {
   const [query, setQuery] = useState("");
   const [jobs, setJobs] = useState([]);
+  const [page, setPage] = useState(1);
 
   useEffect(function () {
     (async function () {
@@ -25,24 +26,27 @@ export default function Page() {
   }, [query]);
 
   return <div>
-    <div className="flex items-center justify-between gap-4">
-      <Search
-        onChange={(value) => setQuery(value)}
-        className="mr-auto"
-      />
-      <FilterJobs />
+    <div className="flex items-center justify-end gap-4">
+      <FilterJobs fill="#FF0000" className="text-blue-500" />
+      <Search onChange={(value) => setQuery(value)} />
     </div>
     <TableComponent
       headers={salesheader}
       component={<TableData data={jobs} />}
     />
-    <ul className="list-disc">
+    <Paginate
+      current={page}
+      previous={() => setPage(prev => prev > 1 ? prev - 1 : 1)}
+      next={() => setPage(prev => prev + 1)}
+      className="mt-10" />
+
+    {/* <ul className="list-disc">
       <li>listing of jobs</li>
       <li>search bar</li>
       <li>pagination on the jobs</li>
       <li>create a new job</li>
       <li>export the jobs by filtering criteria</li>
       <li>routes - /:id <Link href="/admin/jobs/job-details" className="text-green-600 underline">job details page</Link></li>
-    </ul>
+    </ul> */}
   </div>
 }

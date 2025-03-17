@@ -1,0 +1,82 @@
+[
+  {
+    "job": "65fabc1234567890abcdef01",
+    "client": "65fabc1234567890abcdef02",
+    "amount": 5000,
+    "status": "unpaid",
+    "generated_by": "65fabc1234567890abcdef03",
+    "due_date": "2024-04-10T00:00:00Z"
+  },
+  {
+    "job": "65fabc1234567890abcdef04",
+    "client": "65fabc1234567890abcdef05",
+    "amount": 7500,
+    "status": "paid",
+    "generated_by": "65fabc1234567890abcdef06",
+    "due_date": "2024-03-25T00:00:00Z"
+  },
+  {
+    "job": "65fabc1234567890abcdef07",
+    "client": "65fabc1234567890abcdef08",
+    "amount": 9200,
+    "status": "unpaid",
+    "generated_by": "65fabc1234567890abcdef09",
+    "due_date": "2024-04-15T00:00:00Z"
+  },
+  {
+    "job": "65fabc1234567890abcdef10",
+    "client": "65fabc1234567890abcdef11",
+    "amount": 6200,
+    "status": "paid",
+    "generated_by": "65fabc1234567890abcdef12",
+    "due_date": "2024-03-30T00:00:00Z"
+  },
+  {
+    "job": "65fabc1234567890abcdef13",
+    "client": "65fabc1234567890abcdef14",
+    "amount": 8300,
+    "status": "unpaid",
+    "generated_by": "65fabc1234567890abcdef15",
+    "due_date": "2024-04-20T00:00:00Z"
+  },
+  {
+    "job": "65fabc1234567890abcdef16",
+    "client": "65fabc1234567890abcdef17",
+    "amount": 5700,
+    "status": "paid",
+    "generated_by": "65fabc1234567890abcdef18",
+    "due_date": "2024-03-28T00:00:00Z"
+  },
+  {
+    "job": "65fabc1234567890abcdef19",
+    "client": "65fabc1234567890abcdef20",
+    "amount": 10400,
+    "status": "unpaid",
+    "generated_by": "65fabc1234567890abcdef21",
+    "due_date": "2024-04-25T00:00:00Z"
+  },
+  {
+    "job": "65fabc1234567890abcdef22",
+    "client": "65fabc1234567890abcdef23",
+    "amount": 6900,
+    "status": "paid",
+    "generated_by": "65fabc1234567890abcdef24",
+    "due_date": "2024-04-05T00:00:00Z"
+  },
+  {
+    "job": "65fabc1234567890abcdef25",
+    "client": "65fabc1234567890abcdef26",
+    "amount": 8100,
+    "status": "unpaid",
+    "generated_by": "65fabc1234567890abcdef27",
+    "due_date": "2024-04-18T00:00:00Z"
+  },
+  {
+    "job": "65fabc1234567890abcdef28",
+    "client": "65fabc1234567890abcdef29",
+    "amount": 7300,
+    "status": "paid",
+    "generated_by": "65fabc1234567890abcdef30",
+    "due_date": "2024-03-22T00:00:00Z"
+  }
+]

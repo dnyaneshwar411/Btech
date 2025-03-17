@@ -10,7 +10,7 @@ export default function FilterJobs() {
       className=""
       onClick={() => setOpened(true)}
     >
-      <Filter className="w-6 h-6" />
+      <Filter className="w-6 h-6 text-gray-500 hover:text-black" />
     </button>
     {opened && <Modal
       className="flex items-center justify-center"
