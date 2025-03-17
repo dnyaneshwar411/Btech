@@ -7,8 +7,7 @@ export async function getClients(query = "") {
       success: true,
       data: data
         .filter(item =>
-          item.job_id.includes(query) ||
-          item.requested_by.name.includes(query)
+          item.name.includes(query)
         )
     };
   } catch (error) {
@@ -49,6 +48,23 @@ export async function getJobsDetails(query) {
       success: true,
       data: data
         .find(item => item.job_id === query)
+    };
+  } catch (error) {
+    return {
+      success: false,
+      message: error.message || "Internal Server Error!"
+    }
+  }
+}
+
+export async function getInvoice(query) {
+  try {
+    const response = await fetch("/mock/invoice.json")
+    const data = await response
+      .json()
+    return {
+      success: true,
+      data
     };
   } catch (error) {
     return {
