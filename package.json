@@ -1,0 +1,24 @@
+{
+  "name": "btech",
+  "version": "1.0.0",
+  "description": "This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "(npm run dev:client) & npm run dev:server",
+    "dev:client": "cd client && npm run dev",
+    "dev:server": "cd server && npm start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dnyaneshwar411/Btech.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/dnyaneshwar411/Btech/issues"
+  },
+  "homepage": "https://github.com/dnyaneshwar411/Btech#readme"
+}
