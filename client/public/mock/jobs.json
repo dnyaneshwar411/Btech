@@ -44,8 +44,13 @@
       "remarks": [
         {
           "description": "Minor surface scratches detected",
-          "image": "https://example.com/image1.jpg",
-          "completed": false
+          "image": "https://hitopindustrial.com/wp-content/uploads/Types-of-Casting-Defects-Tips-for-Prevention.webp",
+          "completed": true
+        },
+        {
+          "description": "Edged are too sharp make it rounded",
+          "image": "https://hitopindustrial.com/wp-content/uploads/Types-of-Casting-Defects-Tips-for-Prevention.webp",
+          "completed": true
         }
       ]
     },
