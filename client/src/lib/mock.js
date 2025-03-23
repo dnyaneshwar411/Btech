@@ -1,3 +1,29 @@
+export async function getMaterials(
+  query,
+  page,
+  max = 10
+) {
+  try {
+    const response = await fetch("/mock/materials.json")
+    const data = await response
+      .json()
+    return {
+      success: true,
+      data: data
+        .filter(item =>
+          item.name.includes(query) ||
+          item.description.includes(query)
+        )
+        .slice(page - 1, (page - 1) + max)
+    };
+  } catch (error) {
+    return {
+      success: false,
+      message: error.message || "Internal Server Error!"
+    }
+  }
+}
+
 export async function getClients(query = "") {
   try {
     const response = await fetch("/mock/clients.json")
