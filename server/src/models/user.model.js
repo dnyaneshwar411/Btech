@@ -26,7 +26,7 @@ const userSchema = new mongoose.Schema(
       ]
     },
 
-    role: {
+    actions: {
       type: [String],
       enum: [
 
