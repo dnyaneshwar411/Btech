@@ -75,18 +75,6 @@ const jobSchema = new mongoose.Schema(
         type: mongoose.Schema.Types.ObjectId,
         ref: "User"
       },
-      checklist: [
-        {
-          description: {
-            type: String,
-            required: true
-          },
-          completed: {
-            type: Boolean,
-            default: false
-          },
-        },
-      ],
       remarks: [
         {
           description: {

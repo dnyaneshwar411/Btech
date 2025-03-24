@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose, { mongo } from "mongoose";
 
 const materialSchema = new mongoose.Schema(
   {
@@ -24,8 +24,8 @@ const materialSchema = new mongoose.Schema(
     storage: [
       {
         location: {
-          type: String,
-          required: true
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "Storage"
         },
         quantity: {
           type: Number,
@@ -55,19 +55,6 @@ const materialSchema = new mongoose.Schema(
           required: true
         },
         amount: {
-          type: Number,
-          required: true
-        },
-      },
-    ],
-
-    stored_in: [
-      {
-        location: {
-          type: String,
-          required: true
-        },
-        quantity: {
           type: Number,
           required: true
         },
