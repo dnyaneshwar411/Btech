@@ -1,6 +1,8 @@
 "use client";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
 import { truncate } from "@/lib/formatter";
 import { getMaterials } from "@/lib/mock";
 import { useEffect, useState } from "react";
@@ -25,7 +27,13 @@ export default function Page() {
 
   return <div className="container mx-auto p-8">
     <div>
-      <h2 className="text-3xl font-bold tracking-tight">Materials</h2>
+      <div className="flex justify-between items-center">
+        <h1 className="text-2xl font-semibold">Materials</h1>
+        <div className="flex gap-4">
+          <Input placeholder="Search..." className="md:min-w-[350px]" />
+          <Button variant="outline">Filter</Button>
+        </div>
+      </div>
       <div className="mt-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {materials.map((material) => <Material
           key={material.material_id}

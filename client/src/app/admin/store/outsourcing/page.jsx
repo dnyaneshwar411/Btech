@@ -1,4 +1,6 @@
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 
@@ -50,7 +52,13 @@ const storageLocations = [
 
 export default function Page() {
   return <div className="p-6 space-y-6">
-    <h2 className="text-2xl font-semibold tracking-tight">Storage Outsourcing</h2>
+    <div className="mb-8 flex justify-between items-center">
+      <h1 className="text-2xl font-semibold">Storage Outsourcing</h1>
+      <div className="flex gap-4">
+        <Input placeholder="Search..." className="md:min-w-[350px]" />
+        <Button variant="outline">Filter</Button>
+      </div>
+    </div>
     <Table className="border border-gray-200 rounded-lg shadow-sm">
       <TableHeader>
         <TableRow className="bg-gray-100">
