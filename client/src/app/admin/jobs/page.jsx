@@ -6,6 +6,8 @@ import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/componen
 import { Badge } from "@/components/ui/badge";
 import { formatCurrency } from "@/lib/formatter";
 import { formatDistanceToNow } from "date-fns";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
 
 const jobTypes = [
   { id: 1, name: "Listed", value: "listed" },
@@ -33,8 +35,15 @@ export default function Page() {
   }, [query]);
 
   return <div className="container mx-auto p-8">
+
+    <div className="mb-8 flex justify-between items-center">
+      <h1 className="text-2xl font-semibold">Jobs</h1>
+      <div className="flex gap-4">
+        <Input placeholder="Search..." className="md:min-w-[350px]" />
+        <Button variant="outline">Filter</Button>
+      </div>
+    </div>
     <div>
-      <h2 className="text-3xl font-bold tracking-tight">Job</h2>
       <Tabs defaultValue="listed" className="space-y-4 mt-4">
         <div className="overflow-x-auto scrollbar-hide">
           <TabsList className="px-4 py-1 rounded-none">

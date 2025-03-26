@@ -7,6 +7,8 @@ import { invoiceheader } from "@/utils/data/table";
 import { useEffect, useState } from "react";
 import FilterJobs from "@/components/pages/sales/FilterJobs";
 import Paginate from "@/components/core/Paginate";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
 
 export default function Page() {
   const [query, setQuery] = useState("");
@@ -26,9 +28,12 @@ export default function Page() {
   }, [query]);
 
   return <div>
-    <div className="flex items-center justify-end gap-4">
-      <FilterJobs fill="#FF0000" className="text-blue-500" />
-      <Search onChange={(value) => setQuery(value)} />
+    <div className="mb-8 flex justify-between items-center">
+      <h1 className="text-2xl font-semibold">Invoices</h1>
+      <div className="flex gap-4">
+        <Input placeholder="Search..." className="md:min-w-[350px]" />
+        <Button variant="outline">Filter</Button>
+      </div>
     </div>
     <TableComponent
       headers={invoiceheader}

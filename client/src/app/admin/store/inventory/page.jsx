@@ -1,5 +1,7 @@
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import { Progress } from "@/components/ui/progress";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 
@@ -56,8 +58,13 @@ const storageData = [
 
 export default function Page() {
   return <div className="md:p-6 space-y-6">
-    <h2 className="text-2xl font-semibold tracking-tight">Storage Inventory</h2>
-
+    <div className="mb-8 flex justify-between items-center">
+      <h1 className="text-2xl font-semibold">Storage Inventory</h1>
+      <div className="flex gap-4">
+        <Input placeholder="Search..." className="md:min-w-[350px]" />
+        <Button variant="outline">Filter</Button>
+      </div>
+    </div>
     <Accordion type="single" defaultValue="location-1">
       <div className="grid grid-cols-1 lg:grid- cols-2 items-start gap-4">
         {storageData.map((location) => (
