@@ -1,20 +1,33 @@
 import mongoose from "mongoose";
 import app from "./app.js";
-import env from "./config/vars.js"
-import * as Models from "./models/index.js"
+import config from "./config/config.js";
 
-let server;
-mongoose.connect(env.mongoose.url).then(() => {
-  console.log('Connected to MongoDB');
-  server = app.listen(env.port, () => {
-    console.log(`Listening to port ${env.port}`);
+// Connect to MongoDB
+mongoose
+  .connect(config.mongoUri)
+  .then(() => {
+    console.log("Connected to MongoDB");
+
+    // Start server
+    app.listen(config.port, () => {
+      console.log(`Server is running on port ${config.port}`);
+    });
+  })
+  .catch((error) => {
+    console.error("MongoDB connection error:", error);
+    process.exit(1);
   });
+
+// Handle unhandled promise rejections
+process.on("unhandledRejection", (err) => {
+  console.error("Unhandled Promise Rejection:", err);
+  process.exit(1);
 });
 
 const exitHandler = () => {
   if (server) {
     server.close(() => {
-      console.log('Server closed');
+      console.log("Server closed");
       process.exit(1);
     });
   } else {
@@ -27,11 +40,9 @@ const unexpectedErrorHandler = (error) => {
   exitHandler();
 };
 
-process.on('uncaughtException', unexpectedErrorHandler);
-process.on('unhandledRejection', unexpectedErrorHandler);
-
-process.on('SIGTERM', () => {
-  console.log('SIGTERM received');
+process.on("uncaughtException", unexpectedErrorHandler);
+process.on("SIGTERM", () => {
+  console.log("SIGTERM received");
   if (server) {
     server.close();
   }

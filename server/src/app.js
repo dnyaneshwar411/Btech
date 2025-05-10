@@ -1,19 +1,27 @@
 import express from "express";
 import cors from "cors";
+import morgan from "morgan";
 import router from "./routes/v1/index.js";
+import config from "./config/config.js";
 
 const app = express();
 
-// parse json request body
+// Middleware
+app.use(cors());
 app.use(express.json());
-
-// parse urlencoded request body
 app.use(express.urlencoded({ extended: true }));
+app.use(morgan("dev"));
 
+// Routes
 app.use("/api/v1", router);
 
-// enable cors
-app.use(cors());
-app.options('*', cors());
+// Error handling middleware
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).json({
+    success: false,
+    error: "Something went wrong!",
+  });
+});
 
 export default app;

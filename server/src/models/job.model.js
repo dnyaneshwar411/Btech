@@ -5,32 +5,32 @@ const jobSchema = new mongoose.Schema(
     job_id: {
       type: String,
       unique: true,
-      required: true
+      required: true,
     },
     requested_by: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Client",
-      required: true
+      required: true,
     },
     created_by: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
-      required: true
+      required: true,
     },
 
     stage: {
       type: String,
       enum: [
         "created",
-        "listed",
-        "admin-approval",
-        "in-purchase",
-        "in-store",
-        "in-production",
-        "in-quality",
-        "back-to-production",
-        "in-invoice",
-        "ready-dispatch",
+        "design_approved",
+        "material_ordered",
+        "production_started",
+        "quality_check",
+        "packaging",
+        "ready_for_delivery",
+        "delivered",
+        "completed",
+        "cancelled",
       ],
       default: "created",
     },
@@ -39,11 +39,11 @@ const jobSchema = new mongoose.Schema(
       {
         _id: {
           type: mongoose.Schema.Types.ObjectId,
-          ref: "Material"
+          ref: "Material",
         },
         quantity: {
           type: Number,
-          required: true
+          required: true,
         },
       },
     ],
@@ -52,38 +52,38 @@ const jobSchema = new mongoose.Schema(
       {
         description: {
           type: String,
-          required: true
+          required: true,
         },
         amount: {
           type: Number,
-          required: true
+          required: true,
         },
       },
     ],
 
     sale_amount: {
       type: Number,
-      required: true
+      required: true,
     },
 
     quality_check: {
       passed: {
         type: Boolean,
-        default: false
+        default: false,
       },
       checked_by: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "User"
+        ref: "User",
       },
       checklist: [
         {
           description: {
             type: String,
-            required: true
+            required: true,
           },
           completed: {
             type: Boolean,
-            default: false
+            default: false,
           },
         },
       ],
@@ -91,14 +91,14 @@ const jobSchema = new mongoose.Schema(
         {
           description: {
             type: String,
-            required: true
+            required: true,
           },
           image: {
-            type: String
+            type: String,
           },
           completed: {
             type: Boolean,
-            default: false
+            default: false,
           },
         },
       ],
@@ -108,21 +108,22 @@ const jobSchema = new mongoose.Schema(
       {
         forwared_to: {
           type: String,
-          required: true
+          required: true,
         },
         action_taker: {
           type: mongoose.Schema.Types.ObjectId,
-          ref: "User", required: true
+          ref: "User",
+          required: true,
         },
         timestamp: {
           type: Date,
-          default: Date.now
+          default: Date.now,
         },
       },
     ],
   },
   {
-    timestamps: true
+    timestamps: true,
   }
 );
 
