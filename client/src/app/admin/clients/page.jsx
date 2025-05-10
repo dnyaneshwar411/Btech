@@ -8,6 +8,8 @@ import { useEffect, useState } from "react";
 import FilterJobs from "@/components/pages/sales/FilterJobs";
 import Paginate from "@/components/core/Paginate";
 import toast from "react-hot-toast";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 
 export default function Page() {
   const [query, setQuery] = useState("");
@@ -27,9 +29,12 @@ export default function Page() {
   }, [query]);
 
   return <div>
-    <div className="flex items-center justify-end gap-4">
-      <FilterJobs />
-      <Search onChange={(value) => setQuery(value)} />
+    <div className="mb-8 flex justify-between items-center">
+      <h1 className="text-2xl font-semibold">Clients</h1>
+      <div className="flex gap-4">
+        <Input placeholder="Search..." className="md:min-w-[350px]" />
+        <Button variant="outline">Filter</Button>
+      </div>
     </div>
     <TableComponent
       headers={clientsHeader}

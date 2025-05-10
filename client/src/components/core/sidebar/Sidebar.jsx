@@ -21,8 +21,8 @@ export default function Sidebar() {
   >
 
     <div className="flex items-center justify-between h-16 px-4 border-b border-gray-200 dark:border-base-border">
-      <div className="flex items-center">
-        <Package className="h-6 w-6 text-accent-primary" />
+      <div className="min-h-20 flex items-center">
+        <Package className="h-10 w-6 text-accent-primary" />
         <span className="ml-2 text-xl font-semibold text-gray-800 dark:text-text-primary">Inventory</span>
       </div>
       <button

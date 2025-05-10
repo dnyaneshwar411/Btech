@@ -76,10 +76,10 @@ export const sidebar = [
     icon: <Truck className="h-4 w-4" />,
     title: "Dispatch",
     path: "/admin/dispatch",
-    children: [
-      { id: 1, title: "Ready for Dispatch", path: "/admin/dispatch/ready" },
-      { id: 2, title: "Dispatch History", path: "/admin/dispatch/history" },
-    ],
+    // children: [
+    //   { id: 1, title: "Ready for Dispatch", path: "/admin/dispatch/ready" },
+    //   { id: 2, title: "Dispatch History", path: "/admin/dispatch/history" },
+    // ],
   },
   {
     id: 11,

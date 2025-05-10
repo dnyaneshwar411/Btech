@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose, { mongo } from "mongoose";
 
 const materialSchema = new mongoose.Schema(
   {
@@ -108,6 +108,7 @@ const materialSchema = new mongoose.Schema(
         },
       },
     ],
+
     availability: {
       type: Boolean,
       default: true,

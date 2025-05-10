@@ -58,20 +58,18 @@ export default function Page() {
   if (sentBackJobs.length < 1) return <Loader />
 
   return <div className="space-y-6 p-6">
-    <div className="flex justify-between items-center">
+    <div className="mb-8 flex justify-between items-center">
       <h1 className="text-2xl font-semibold">Sent Back from Quality</h1>
+      <div className="flex gap-4">
+        <Input
+          value={query}
+          onChange={e => setQuery(e.target.value)}
+          placeholder="Search Job ID..."
+          className="md:min-w-[350px]"
+        />
+        <Button variant="outline">Filter</Button>
+      </div>
     </div>
-
-    <div className="flex gap-4">
-      <Input
-        value={query}
-        onChange={e => setQuery(e.target.value)}
-        placeholder="Search Job ID..."
-        className="w-1/3"
-      />
-      <Button variant="outline">Filter</Button>
-    </div>
-
     <Table>
       <TableHeader>
         <TableRow>
