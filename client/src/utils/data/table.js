@@ -14,7 +14,8 @@ export const clientsHeader = [
   "Email",
   "Phone",
   "Type",
-  "No. Jobs"
+  "No. Jobs",
+  ""
 ]
 
 export const invoiceheader = [

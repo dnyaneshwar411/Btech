@@ -11,18 +11,18 @@ import {
 const router = express.Router();
 
 // Create a new client
-router.post("/", auth, createClient);
+router.post("/", auth, createClient); // integrated
 
 // Get all clients
-router.get("/", auth, getClients);
+router.get("/", auth, getClients); // integrated
 
 // Get client by ID
-router.get("/:id", auth, getClientById);
+router.get("/:id", auth, getClientById); // integrated
 
 // Update client
 router.put("/:id", auth, updateClient);
 
 // Delete client
-router.delete("/:id", auth, deleteClient);
+router.delete("/:id", auth, deleteClient); // integrated
 
 export default router;

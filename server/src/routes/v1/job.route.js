@@ -18,10 +18,10 @@ const router = express.Router();
 router.post("/", auth, createJob);
 
 // Get all jobs with filters
-router.get("/", auth, getJobs);
+router.get("/", auth, getJobs); // integrated
 
 // Get job by ID
-router.get("/:id", auth, getJobById);
+router.get("/:id", auth, getJobById); // integrated
 
 // Update job details
 router.put("/:id", auth, updateJob);
@@ -39,6 +39,6 @@ router.post("/:id/expenses", auth, addExpenseToJob);
 router.patch("/:id/quality-check", auth, updateQualityCheck);
 
 // Delete job
-router.delete("/:id", auth, deleteJob);
+router.delete("/:id", auth, deleteJob); // integrated
 
 export default router;
