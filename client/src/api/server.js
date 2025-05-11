@@ -21,7 +21,7 @@ export async function fetchData(endpoint) {
   }
 }
 
-export async function sendData(endpoint, method = "POST", data) {
+export async function sendData(endpoint, data, method = "POST") {
   try {
     if (typeof method !== "string") {
       throw new Error("HTTP method must be a string");

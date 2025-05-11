@@ -13,20 +13,20 @@ export default function Page() {
   const params = useParams();
   const router = useRouter();
 
-  const { isLoading, error, data } = useSWR(`jobs/${params.job}`, () => fetchData(`jobs/${params.job}`))
+  const { isLoading, error, data } = useSWR(`clients/${params.client}`, () => fetchData(`clients/${params.client}`));
   if (isLoading) return <ContentLoader />
   if (error || !data.success) return <ContentError title={error || data.error} />
-  const job = data.data;
 
-  async function deleteJob(setLoading, btnRef) {
+  const client = data.data;
+
+  async function deleteMaterial(setLoading, btnRef) {
     try {
       setLoading(true);
-      const response = await sendData(`jobs/${params.job}`, {}, "DElETE");
-      console.log(response)
+      const response = await sendData(`clients/${params.client}`, {}, "DElETE");
       if (!response.success) throw new Error(response.error);
-      mutate("jobs");
-      toast.success(response.message || "Successfully deleted the item!");
-      router.push("/admin/jobs");
+      mutate("clients");
+      toast.success(response.message || "Successfully deleted the client!");
+      router.push("/admin/clients");
       btnRef.current.click();
     } catch (error) {
       toast.error(error.message || "Try again later!");
@@ -37,8 +37,8 @@ export default function Page() {
 
   return <div>
     <DualOptionActionModal
-      description="Are you sure you want to delete the job."
-      action={(setLoading, btnRef) => deleteJob(setLoading, btnRef)}
+      description="Are you sure you want to delete the client"
+      action={(setLoading, btnRef) => deleteMaterial(setLoading, btnRef)}
     >
       <AlertDialogTrigger className="text-white bg-red-700 leading-[1] font-bold px-4 py-2 rounded-[8px]">
         Delete

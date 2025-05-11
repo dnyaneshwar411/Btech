@@ -1,5 +1,7 @@
 import TableNoDataFound from "@/components/core/TableNoDataFound";
 import { TableBody, TableCell, TableRow } from "@/components/ui/table";
+import { Eye } from "lucide-react";
+import Link from "next/link";
 
 export default function TableData({
   data
@@ -14,6 +16,11 @@ export default function TableData({
       <TableCell>{item.phone}</TableCell>
       <TableCell>{item.type}</TableCell>
       <TableCell>{item.jobs.length}</TableCell>
+      <TableCell className="!max-w-20 w-20">
+        <Link href={`/admin/clients/${item._id}`}>
+          <Eye className="w-[20px] h-[20px]" />
+        </Link>
+      </TableCell>
     </TableRow>
     )}
   </TableBody >
