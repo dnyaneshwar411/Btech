@@ -78,3 +78,33 @@ export const materialFields = [
   { id: 13, label: "Minimum Stock", name: "minimum_stock", inputtype: 1, type: "number" },
   { id: 14, label: "Quantity Available", name: "quantity_available", inputtype: 1, type: "number" },
 ];
+
+export const purchaseFieldNames = [
+  "seller.name", "seller.email", "seller.contact",
+  "purchase_cost", "requested_material", "requested_material_quantity",
+  "status", "completion_date", "requested_date"
+];
+
+export const purchaseFields = [
+  { id: 1, label: "Seller Name", name: "seller.name", inputtype: 1 },
+  { id: 2, label: "Seller Email", name: "seller.email", inputtype: 1, type: "email" },
+  { id: 3, label: "Seller Contact", name: "seller.contact", inputtype: 1 },
+  { id: 4, label: "Purchase Cost", name: "purchase_cost", inputtype: 1, type: "number" },
+  // { id: 5, label: "Requested Material", name: "requested_material", inputtype: 1 },
+  { id: 6, label: "Requested Quantity", name: "requested_material_quantity", inputtype: 1, type: "number" },
+  {
+    id: 7,
+    label: "Status",
+    name: "status",
+    inputtype: 2,
+    options: [
+      { id: 1, name: "Requested", value: "requested" },
+      { id: 2, name: "Approved", value: "approved" },
+      { id: 3, name: "Dispatched", value: "dispatched" },
+      { id: 4, name: "Completed", value: "completed" }
+    ],
+    defaultValue: "requested"
+  },
+  { id: 8, label: "Completion Date", name: "completion_date", inputtype: 1, type: "date" },
+  { id: 9, label: "Requested Date", name: "requested_date", inputtype: 1, type: "date" }
+];

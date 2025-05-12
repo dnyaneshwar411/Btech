@@ -4,6 +4,7 @@ import authRoute from "./auth.route.js";
 import jobRoutes from "./job.route.js";
 import clientRoutes from "./client.route.js";
 import materialRoutes from "./material.route.js";
+import purchaseRoutes from "./purchse.route.js";
 
 const router = express.Router();
 
@@ -23,6 +24,10 @@ const defaultRoutes = [
   {
     path: "/materials",
     route: materialRoutes,
+  },
+  {
+    path: "/purchase",
+    route: purchaseRoutes,
   },
 ];
 

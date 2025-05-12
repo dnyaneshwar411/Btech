@@ -6,27 +6,40 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "@/components/ui/dialog";
 import { Card } from "@/components/ui/card";
 import { format } from "date-fns";
-
-const purchaseRequests = [
-  {
-    _id: "PUR-001",
-    seller: { name: "ABC Suppliers", email: "abc@supply.com", contact: "9876543210" },
-    purchase_cost: 5000,
-    requested_material: { name: "Steel Rods" },
-    requested_material_quantity: 100,
-    status: "requested",
-    requested_date: new Date("2024-03-10")
-  }
-];
+import AddPurchaseModal from "@/components/pages/purchase/AddPurchaseModal";
+import ContentLoader from "@/components/core/ContentLoader";
+import ContentError from "@/components/core/ContentError";
+import useSWR, { mutate } from "swr";
+import { fetchData, sendData } from "@/api/server";
+import DualOptionActionModal from "@/components/core/DualOptionActionModal";
+import { AlertDialogTrigger } from "@/components/ui/alert-dialog";
+import toast from "react-hot-toast";
 
 export default function PurchaseRequestsPage() {
   const [openDialog, setOpenDialog] = useState(false);
   const [selectedPurchase, setSelectedPurchase] = useState(null);
 
-  const handleViewDetails = (purchase) => {
-    setSelectedPurchase(purchase);
-    setOpenDialog(true);
-  };
+  const { isLoading, error, data } = useSWR("purchases/requests", () => fetchData("purchase"));
+  if (isLoading) return <ContentLoader />
+  if (error || !data.success) return <ContentError title={error || data.error} />
+  const purchases = data.data
+    .filter(purchase => purchase.status === "requested")
+
+  async function approvePurchase(setLoading, btnRef, _id) {
+    try {
+      setLoading(true);
+      const response = await sendData(`purchase/${_id}`, { status: "approved" }, "PUT");
+      console.log(response)
+      if (!response.success) throw new Error(response.error);
+      mutate("purchases/requests");
+      toast.success(response.message || "Successfull!");
+      btnRef.current.click();
+    } catch (error) {
+      toast.error(error.message || "Try again later!");
+    } finally {
+      setLoading(false);
+    }
+  }
 
   return (
     <div className="space-y-6 p-6">
@@ -35,6 +48,7 @@ export default function PurchaseRequestsPage() {
         <div className="flex gap-4">
           <Input placeholder="Search Purchase ID..." className="md:min-w-[350px]" />
           <Button variant="outline">Filter</Button>
+          <AddPurchaseModal />
         </div>
       </div>
       <Table>
@@ -49,15 +63,20 @@ export default function PurchaseRequestsPage() {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {purchaseRequests.map((purchase) => (
+          {purchases.map((purchase) => (
             <TableRow key={purchase._id}>
-              <TableCell>{purchase._id}</TableCell>
-              <TableCell>{purchase.requested_material.name}</TableCell>
+              <TableCell>{purchase?.requested_material?.material_id}</TableCell>
+              <TableCell>{purchase?.requested_material?.name}</TableCell>
               <TableCell>{purchase.requested_material_quantity}</TableCell>
               <TableCell>₹{purchase.purchase_cost}</TableCell>
               <TableCell>{format(new Date(purchase.requested_date), "dd MMM yyyy")}</TableCell>
               <TableCell className="flex gap-2">
-                <Button onClick={() => handleViewDetails(purchase)} variant="outline" className="px-4 py-2 rounded-none">View Details</Button>
+                <DualOptionActionModal
+                  description="Is this purchse approved?"
+                  action={(setLoading, btnRef) => approvePurchase(setLoading, btnRef, purchase._id)}
+                >
+                  <AlertDialogTrigger className="text-green-600 font-bold">Approve</AlertDialogTrigger>
+                </DualOptionActionModal>
               </TableCell>
             </TableRow>
           ))}
