@@ -26,6 +26,7 @@ const jobSchema = new mongoose.Schema(
         "material_ordered",
         "production_started",
         "quality_check",
+        "sent_back_from_quality",
         "packaging",
         "ready_for_delivery",
         "delivered",
@@ -85,6 +86,9 @@ const jobSchema = new mongoose.Schema(
             type: Boolean,
             default: false,
           },
+          image: {
+            type: String
+          }
         },
       ],
       remarks: [

@@ -1,36 +1,27 @@
 "use client";
+import { fetchData } from "@/api/server";
+import ContentError from "@/components/core/ContentError";
+import ContentLoader from "@/components/core/ContentLoader";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
-import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+import { Dialog, DialogClose, DialogContent, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Progress } from "@/components/ui/progress";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import useDebounce from "@/hooks/useDebounce";
-import { getJobs } from "@/lib/mock";
 import { Eye } from "lucide-react";
 import { useEffect, useState } from "react";
-import toast from "react-hot-toast";
+import useSWR from "swr";
 
 export default function Page() {
   const [query, setQuery] = useState("");
-  const [jobs, setJobs] = useState([]);
+  const { isLoading, error, data } = useSWR("jobs", () => fetchData("jobs"))
+  if (isLoading) return <ContentLoader />
+  if (error || !data.success) return <ContentError title={error || data.error} />
+  const jobs = data.data
+    .filter(job => job.stage === "cancelled");
 
-  const debouncedQuery = useDebounce(query);
-
-  useEffect(function () {
-    (async function () {
-      try {
-        const { success, data, message } = await getJobs(debouncedQuery, 1, 10);
-        if (!success) throw new Error(message);
-        setJobs(data);
-      } catch (error) {
-        toast.error(error.message || "Internal Server Error!");
-      }
-    })();
-  }, [debouncedQuery]);
   return <Jobs
     jobs={jobs}
     query={query}
@@ -70,7 +61,6 @@ function Jobs({
         <TableRow>
           <TableHead>Job ID</TableHead>
           <TableHead>Product</TableHead>
-          <TableHead>Progress</TableHead>
           <TableHead>Actions</TableHead>
         </TableRow>
       </TableHeader>
@@ -78,8 +68,7 @@ function Jobs({
         {jobs.map((job) => (
           <TableRow key={job.job_id}>
             <TableCell>{job.job_id}</TableCell>
-            <TableCell>{job.requested_by.name}</TableCell>
-            <TableCell><Progress value={30} /></TableCell>
+            <TableCell>{job?.requested_by?.name || "Unknown Name"}</TableCell>
             <TableCell className="flex gap-2">
               <Badge variant="success" className="text-md cursor-pointer rounded-none" onClick={() => handleViewChecklist(job)}>Checklist</Badge>
             </TableCell>
@@ -95,29 +84,27 @@ function Jobs({
         </DialogHeader>
 
         <div className="space-y-4">
-          {selectedJob?.quality_check.remarks.map((remark, index) => (
+          {selectedJob?.quality_check.checklist.map((remark, index) => (
             <Card key={index} className="p-3 flex items-center flex-row gap-4">
               <Checkbox checked={remark.completed} onCheckedChange={() => handleRemarkToggle(index)} disabled />
               <p className="mr-auto">{remark.description}</p>
               {remark.image && (
                 <Dialog>
+                  <DialogHeader><DialogTitle /></DialogHeader>
                   <DialogTrigger asChild>
                     <Button variant="link" className="w-[20px] h-[20px]">
                       <Eye />
                     </Button>
                   </DialogTrigger>
                   <DialogContent>
-                    <img src={remark.image} alt="Remark issue" className="w-full h-auto rounded-lg" />
+                    <img src={remark.image || "/not-found.png"} alt="Remark issue" className="w-full h-auto rounded-lg" />
                   </DialogContent>
                 </Dialog>
               )}
             </Card>
           ))}
         </div>
-
-        <DialogFooter>
-          <Button variant="default">Close</Button>
-        </DialogFooter>
+        <DialogClose className="bg-black text-white px-4 py-2 rounded-[4px]">Close</DialogClose>
       </DialogContent>
     </Dialog>
   </div>

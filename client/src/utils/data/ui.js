@@ -1,12 +1,12 @@
 import { LayoutDashboard, Package, Users, FileText, Box, ShoppingBasket, Factory, ShieldCheck, Truck, CreditCard, Settings, UserCog } from "lucide-react";
 
 export const sidebar = [
-  {
-    id: 1,
-    icon: <LayoutDashboard className="h-4 w-4" />,
-    title: "Dashboard",
-    path: "/admin",
-  },
+  // {
+  //   id: 1,
+  //   icon: <LayoutDashboard className="h-4 w-4" />,
+  //   title: "Dashboard",
+  //   path: "/admin",
+  // },
   {
     id: 2,
     icon: <Package className="h-4 w-4" />,

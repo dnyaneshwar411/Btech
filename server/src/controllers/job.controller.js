@@ -64,11 +64,13 @@ export const getJobById = async (req, res) => {
 // Update job details
 export const updateJob = async (req, res) => {
   try {
+    console.log(req.body)
     const job = await Job.findByIdAndUpdate(
       req.params.id,
       { $set: req.body },
       { new: true, runValidators: true }
     );
+    console.log(job)
 
     if (!job) {
       return res.status(404).json({ success: false, error: "Job not found" });

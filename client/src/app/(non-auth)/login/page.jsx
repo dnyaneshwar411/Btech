@@ -49,7 +49,7 @@ export function LoginForm({
       const authHeaderData = await authHeaderResponse.json()
 
       if (authHeaderData.status_code !== 200) throw new Error(authHeaderData.message);
-      router.push("/admin")
+      router.push("/admin/jobs")
     } catch (error) {
       toast.error(error.message || "Please try again later!");
     }
